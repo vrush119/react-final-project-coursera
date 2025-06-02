@@ -1,9 +1,15 @@
 .about-us-container {
-    width: 1000px;
-    /* margin: 0 auto; */
-    /* padding: 20px; */
-    /* background-color: red; */
-    text-align: justify;
+     max-width: 1000px;
+     width: 70%;               /* Responsive: 90% of the viewport width */
+     margin: 0 auto;           /* Center horizontally */
+     padding: 20px;            /* Inner spacing */
+     text-align: justify;
+     float: right;
+        /*width: 1000px;
+    margin: 0 auto;
+    padding: 20px;*/
+    /*background-color: red;*/
+    /*text-align: justify;*/
   }
   
   .about-us-heading {

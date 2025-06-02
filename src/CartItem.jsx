@@ -5,31 +5,65 @@ import './CartItem.css';
 
 const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
+ 
   const dispatch = useDispatch();
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
- 
+ // alert(`Cart Items: ${JSON.stringify(cart)}`);
+    //let total1 = cart.reduce((total, item) => total + (item.cost * item.quantity), 0).toFixed(2);
+   let total1 = cart.reduce((sum, item) => {
+  const cost = parseFloat(String(item.cost).replace(/[^0-9.]/g, '')); // remove ₹ or any non-numeric
+  const quantity = Number(item.quantity); // ensure number
+  return sum + (cost * quantity);
+}, 0).toFixed(2); // round to 2 decimal places
+
+//alert(`Total Cost: ₹${total1}`);
+
+    // If total1 is NaN, return 0
+    if (isNaN(total1)) {
+      return 0;
+    }else{
+        return total1;
+    }
+    
   };
 
   const handleContinueShopping = (e) => {
-   
+    onContinueShopping();
   };
 
 
 
   const handleIncrement = (item) => {
+    //alert(`Incrementing quantity for ${item.name}`);
+    dispatch(updateQuantity({ name: item.name, quantity: Number(item.quantity) + 1 }));
   };
 
   const handleDecrement = (item) => {
-   
+    dispatch(updateQuantity({ name: item.name, quantity: Number(item.quantity) - 1 }));
   };
 
   const handleRemove = (item) => {
+    dispatch(removeItem(item.name));
   };
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
+    const cost = parseFloat(String(item.cost).replace(/[^0-9.]/g, '')); // remove ₹ or any non-numeric
+    const quantity = Number(item.quantity);
+
+    if (isNaN(cost)) {
+      return 0;
+    }else{
+   // return (item.cost * item.quantity).toFixed(2);
+   
+     const total = cost * quantity;
+  
+  // Return number, not string
+  return Number(total.toFixed(2));
+    }
+    
   };
 
   return (

@@ -8,6 +8,7 @@
 
 .landing-page {
   position: relative;
+  display: flex;
   width: 100vw;
   height: 100vh;
   background-color: #f8f8f8;
@@ -24,6 +25,7 @@
   background-position: center;
   filter: brightness(0.8);
 }
+
 .content {
   display: flex;
   align-items: center;
@@ -36,21 +38,43 @@
   gap: 20px;
 }
 
-.landing_content {
+/*.landing_content {
  margin-top: 430px;
   margin-left: 100px;
   transform: translate(-50%, -50%);
   z-index: 1;
   text-align: center;
   /* background-color: red; */
-  width: 400px;
+  /*width: 400px;
   height: 400px;
   display: flex;
-  align-items: center;
+  align-items: right;
   flex-direction: column;
   justify-content: center;
   gap: 10px;
+}*/
+.landing_content {
+  position: absolute;
+  top: 50%;
+  left: 15%; /* Was 100px + translateX(-50%), now use percentage */
+  transform: translate(-50%, -50%); /* Keeps vertical centering */
+  width: 400px;
+  height: auto;
+  padding-right: 20px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  text-align: center;
+  z-index: 1;
+
+  background-color: rgba(0, 0, 0, 0.3); /* Optional: to improve readability */
+  border-radius: 10px;
 }
+
 
 .content p,
 .content h1 {
@@ -142,6 +166,6 @@
   }
 
   .aboutus_container {
-    width: 90%; /* Adjust as needed */
+    width: 70%; /* Adjust as needed */
   }
 }
